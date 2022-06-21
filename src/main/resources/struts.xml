@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+    <constant name="struts.devMode" value="true"/>
+    <package name="default" namespace="/" extends="struts-default,json-default,jasperreports-default">
+
+        <interceptors>
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="json"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-action-ref name="index"></default-action-ref>
+        <action name="index" >
+            <result>main.jsp</result>
+        </action>
+
+        <action name="register" class="Actions.EmployeAction" method="register" >
+            <result name="input" type="json"/>
+            <result name="success" type="json"></result>
+        </action>
+        <action name="findAll" class="Actions.EmployeAction" method="findAll" >
+           <result name="success" type="json"></result>
+        </action>
+        <action name="findById" class="Actions.EmployeAction" method="findById" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="update" class="Actions.EmployeAction" method="update" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="delete" class="Actions.EmployeAction" method="delete" >
+            <result name="success" type="json"></result>
+        </action>
+
+
+        <action name="registerProd" class="Actions.ProductAction" method="register" >
+            <result name="input" type="json"/>
+            <result name="success" type="json"></result>
+        </action>
+        <action name="findAllProd" class="Actions.ProductAction" method="findAll" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="findByIdProd" class="Actions.ProductAction" method="findById" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="updateProd" class="Actions.ProductAction" method="update" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="deleteProd" class="Actions.ProductAction" method="delete" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="reportProd" class="Actions.ProductAction" method="reportProducts">
+            <result name="success" type="jasper">
+<!--                <param name="contentDisposition">attachment;filename="reporteProductos.pdf"</param>-->
+                <param name="location">/reports/ProductsList.jasper</param>
+                <param name="dataSource">productReport</param>
+                <param name="format">PDF</param>
+            </result>
+        </action>
+
+
+
+        <action name="registerCat" class="Actions.CategoryAction" method="register" >
+            <result name="input" type="json"/>
+            <result name="success" type="json"></result>
+        </action>
+        <action name="findAllCat" class="Actions.CategoryAction" method="findAll" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="findByIdCat" class="Actions.CategoryAction" method="findById" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="updateCat" class="Actions.CategoryAction" method="update" >
+            <result name="success" type="json"></result>
+        </action>
+        <action name="deleteCat" class="Actions.CategoryAction" method="delete" >
+            <result name="success" type="json"></result>
+        </action>
+    </package>
+</struts>
